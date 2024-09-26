@@ -1,0 +1,16 @@
+.cardItem {
+  width: 150px;
+  height: 240px;
+  text-align: center;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.219);
+  border-radius: 30px;
+}
+
+.cardPhoto {
+  width: 90px;
+  height: 90px;
+  border-radius: 90px;
+  background-color: black;
+  margin: 36px auto;
+  margin-bottom: 50px;
+}

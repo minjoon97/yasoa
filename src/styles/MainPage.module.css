@@ -1,0 +1,42 @@
+.sec01 {
+  height: 600px;
+  background-color: #3b2db5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sec01Contents {
+  max-width: 1500px;
+  width: 90%;
+}
+
+.sec01Title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  color: white;
+  line-height: 50px;
+}
+
+.sec02 {
+  height: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sec02Title {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: rgb(0, 0, 0);
+  line-height: 50px;
+}
+
+.hotAreaWrapper {
+  margin-top: 80px;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
