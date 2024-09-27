@@ -11,3 +11,7 @@ Typescript
 set함수랑 fetch간에 순서 문제 때문에 오류 고치는중....<br>
 fetch된 데이터를 자식컴포넌트에서 파싱하는 것이 나을지,<br>
 부모 App.tsx파일에서 파싱해서 props전송하는 것이 나을지 테스팅 중<br>
+
+## 스크린샷
+
+![image](https://github.com/user-attachments/assets/28e35ed3-dfff-44e5-9d49-1aaed9239088)
