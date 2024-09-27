@@ -1,0 +1,70 @@
+.wrapper {
+  display: flex;
+  height: 240px;
+  margin-top: 20px;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.image {
+  width: 20%;
+  background-color: rgba(0, 0, 0, 0.089);
+  border-radius: 10px;
+}
+
+.contents {
+  flex: 1;
+  padding: 2rem;
+}
+
+.contentsTop {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: 1.6rem;
+  font-weight: 800;
+}
+
+.date {
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.356);
+  padding-top: 10px;
+}
+
+.addr {
+  font-size: 0.9rem;
+  color: rgba(0, 0, 0, 0.836);
+  padding-top: 14px;
+}
+
+.overview {
+  font-size: 0.9rem;
+  line-height: 1.1rem;
+  color: rgba(0, 0, 0, 0.699);
+  padding-top: 2.6rem;
+}
+
+.interface {
+  display: flex;
+}
+
+.like {
+  width: 50px;
+  height: 50px;
+  border: 1px solid black;
+}
+
+.dDay {
+  border: 1px solid black;
+  width: 100px;
+  height: 50px;
+  border-radius: 10px;
+}
+
+.detailBtn {
+  width: 100px;
+  height: 50px;
+  border-radius: 10px;
+}

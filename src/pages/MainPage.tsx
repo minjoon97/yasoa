@@ -1,59 +1,24 @@
 import SearchBox from "../components/SearchBox.tsx";
 import HotArea from "../components/HotArea.tsx";
 import styles from "../styles/MainPage.module.css";
-import { Dispatch, SetStateAction, useCallback, useEffect } from "react";
-
-interface festivalType {
-  addr1: string;
-  addr2: string;
-  areacode: string;
-  contentid: string;
-  contenttypeid: string;
-  firstimage: string;
-  firstimage2: string;
-  tel: string;
-  title: string;
-}
+import { Dispatch, SetStateAction } from "react";
 
 interface MainPageProps {
   serviceList: string[];
-  apiKey: string;
-  keywordState: string;
-  setKeywordState: Dispatch<SetStateAction<string>>;
   contTypeState: number;
   setcontTypeState: Dispatch<SetStateAction<number>>;
-  areaState: string;
   setAreaState: Dispatch<SetStateAction<string>>;
-  fetchedData: festivalType[];
-  setfetchedData: Dispatch<SetStateAction<festivalType[]>>;
+  fetchDataList: (keyword: string) => Promise<void>;
 }
 
 const MainPage: React.FC<MainPageProps> = ({
   serviceList,
-  apiKey,
-  keywordState,
-  setKeywordState,
   contTypeState,
   setcontTypeState,
-  areaState,
   setAreaState,
-  fetchedData,
-  setfetchedData,
+  fetchDataList,
 }) => {
   const famousArea = ["서울", "여수", "부산", "속초", "강릉", "제주도"];
-
-  const keywordSearchUrl = `https://apis.data.go.kr/B551011/KorService1/searchKeyword1?serviceKey=${apiKey}&numOfRows=4&pageNo=1&MobileOS=ETC&MobileApp=AppTest&_type=json&listYN=Y&arrange=A&keyword=${keywordState}&contentTypeId=${contTypeState}&areaCode=${areaState}`;
-
-  const fetchDataList = useCallback(async () => {
-    const res = await fetch(keywordSearchUrl);
-    const fetchedResult = await res.json();
-    setfetchedData(fetchedResult.response.body.items.item);
-  }, [keywordSearchUrl]);
-
-  useEffect(() => {
-    console.log(keywordState, contTypeState, areaState);
-    console.log(fetchedData);
-  }, [fetchedData]);
 
   return (
     <div className={styles.wrapper}>
@@ -65,7 +30,6 @@ const MainPage: React.FC<MainPageProps> = ({
           </h2>
           <SearchBox
             serviceList={serviceList}
-            setKeywordState={setKeywordState}
             setcontTypeState={setcontTypeState}
             setAreaState={setAreaState}
             fetchDataList={fetchDataList}

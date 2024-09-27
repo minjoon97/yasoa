@@ -1,5 +1,5 @@
 import styles from "../styles/FestivalListPage.module.css";
-import { useState, useEffect } from "react";
+import ListItem from "../components/ListItem.tsx";
 
 interface festivalType {
   addr1: string;
@@ -33,74 +33,23 @@ interface festivalCombinedData extends festivalType {
 }
 
 interface FestivalListPageProps {
-  fetchedData: festivalType[];
-  apiKey: string;
+  fetchedData: festivalCombinedData[];
 }
 
-const FestivalListPage: React.FC<FestivalListPageProps> = ({
-  fetchedData,
-  apiKey,
-}) => {
-  const [finalData, setFinalData] = useState<festivalCombinedData[]>();
-
-  const fetchCommonList = async (item: festivalType) => {
-    const commonUrl = `https://apis.data.go.kr/B551011/KorService1/detailCommon1?serviceKey=${apiKey}&MobileOS=ETC&MobileApp=AppTest&_type=json&contentId=${item.contentid}&contentTypeId=15&defaultYN=Y&firstImageYN=Y&areacodeYN=Y&catcodeYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y&numOfRows=50&pageNo=1`;
-    const res = await fetch(commonUrl);
-    const fetchedCommonResult = await res.json();
-    return fetchedCommonResult;
-  };
-
-  const fetchIntroList = async (item: festivalType) => {
-    const introUrl = `https://apis.data.go.kr/B551011/KorService1/detailIntro1?serviceKey=${apiKey}&MobileOS=ETC&MobileApp=AppTest&_type=json&contentId=${item.contentid}&contentTypeId=15&numOfRows=10&pageNo=1`;
-    const res = await fetch(introUrl);
-    const fetchedIntroResult = await res.json();
-    return fetchedIntroResult;
-  };
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const combinedData: festivalCombinedData[] = [];
-
-      for (const item of fetchedData) {
-        const commonData = await fetchCommonList(item);
-        const introData = await fetchIntroList(item);
-
-        const mergedData = {
-          ...item,
-          commonData: commonData.response.body.items.item[0],
-          introData: introData.response.body.items.item[0],
-        };
-
-        combinedData.push(mergedData);
-      }
-
-      setFinalData(combinedData);
-    };
-    fetchData();
-  }, [fetchedData]);
-
-  useEffect(() => {
-    console.log(finalData);
-  }, [finalData]);
-
+const FestivalListPage: React.FC<FestivalListPageProps> = ({ fetchedData }) => {
   return (
     <div className={styles.wrapper}>
-      <div className={styles.top}></div>
+      <div className={styles.top}>
+        <div className={styles.topTitle}>
+          <h2>행사</h2>
+          <p>Festival</p>
+        </div>
+      </div>
       <div className={styles.searchContent}></div>
       <div className={styles.listContent}>
         <ul>
-          {finalData?.map((item) => (
-            <li>
-              {item.title}
-              <br></br>
-              {item.addr1}
-              <br></br>
-              {item.tel}
-              <br></br>
-              {item.commonData.overview}
-              <br></br>
-              <img src={item.firstimage} alt=""></img>
-            </li>
+          {fetchedData?.map((item, i) => (
+            <ListItem key={i} item={item}></ListItem>
           ))}
         </ul>
       </div>

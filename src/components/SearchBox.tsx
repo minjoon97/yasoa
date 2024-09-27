@@ -4,16 +4,14 @@ import { useNavigate } from "react-router-dom";
 
 interface SearchBoxProps {
   serviceList: string[];
-  setKeywordState: Dispatch<SetStateAction<string>>;
   setcontTypeState: Dispatch<SetStateAction<number>>;
   setAreaState: Dispatch<SetStateAction<string>>;
-  fetchDataList: () => Promise<void>;
+  fetchDataList: (keyword: string) => Promise<void>;
   contTypeState: number;
 }
 
 const SearchBox: React.FC<SearchBoxProps> = ({
   serviceList,
-  setKeywordState,
   setcontTypeState,
   setAreaState,
   fetchDataList,
@@ -78,16 +76,17 @@ const SearchBox: React.FC<SearchBoxProps> = ({
           ))}
         </select>
         <input
-          onInput={(e) => {
-            setKeywordState((e.target as HTMLInputElement).value);
-          }}
           ref={inputRef}
           type="text"
           placeholder="검색하고자 하는 키워드를 입력해주세요"
         ></input>
         <button
           onClick={() => {
-            fetchDataList();
+            let keyword = "";
+            if (inputRef.current) {
+              keyword = inputRef.current.value;
+            }
+            fetchDataList(keyword);
             if (contTypeState === 15) {
               navigate("/festival");
             }
