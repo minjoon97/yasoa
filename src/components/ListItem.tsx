@@ -1,38 +1,18 @@
 import styles from "../styles/ListItem.module.css";
-
-interface festivalType {
-  addr1: string;
-  addr2: string;
-  areacode: string;
-  contentid: string;
-  contenttypeid: string;
-  firstimage: string;
-  firstimage2: string;
-  tel: string;
-  title: string;
-}
-
-interface festivalCombinedData extends festivalType {
-  commonData: {
-    title: string;
-    tel: string;
-    homepage: string;
-    firstimage: string;
-    firstimage2: string;
-    overview: string;
-  };
-  introData: {
-    sponsor1: string;
-    sponsor1tel: string;
-    eventstartdate: string;
-    eventenddate: string;
-    eventplace: string;
-    usetimefestival: string;
-  };
-}
+import {
+  festivalCombinedData,
+  lodgmentCombinedData,
+  attractionCombinedData,
+} from "../types/datatype.ts";
 
 interface ListItemProps {
-  item: festivalCombinedData;
+  item: festivalCombinedData | lodgmentCombinedData | attractionCombinedData;
+}
+
+function isFestivalData(
+  item: festivalCombinedData | lodgmentCombinedData | attractionCombinedData
+): item is festivalCombinedData {
+  return (item as festivalCombinedData).introData.eventstartdate !== undefined;
 }
 
 const ListItem: React.FC<ListItemProps> = ({ item }) => {
@@ -43,7 +23,9 @@ const ListItem: React.FC<ListItemProps> = ({ item }) => {
         <div className={styles.contentsTop}>
           <div>
             <h3 className={styles.title}>{item.title}</h3>
-            <p className={styles.date}>{item.introData.eventstartdate}</p>
+            {isFestivalData(item) && (
+              <p className={styles.date}>{item.introData.eventstartdate}</p>
+            )}
             <p className={styles.addr}>{item.addr1}</p>
           </div>
           <div className={styles.interface}>

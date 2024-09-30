@@ -8,7 +8,11 @@ interface MainPageProps {
   contTypeState: number;
   setcontTypeState: Dispatch<SetStateAction<number>>;
   setAreaState: Dispatch<SetStateAction<string>>;
-  fetchDataList: (keyword: string) => Promise<void>;
+  fetchDataList: (
+    keyword: string,
+    page: number,
+    newOrNot: boolean
+  ) => Promise<void>;
 }
 
 const MainPage: React.FC<MainPageProps> = ({

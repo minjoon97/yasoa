@@ -1,0 +1,58 @@
+.searchContent {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.searchContent > .selectMain {
+  background-color: transparent;
+  width: 100px;
+  height: 40px;
+  outline: none;
+  border: 1px solid rgba(255, 255, 255, 0.637);
+  border-radius: 5px;
+  color: rgba(255, 255, 255, 0.726);
+  margin: none;
+}
+
+.searchContent > .selectNotMain {
+  background-color: transparent;
+  width: 100px;
+  height: 40px;
+  outline: none;
+  border: 1px solid rgba(0, 0, 0, 0.24);
+  border-radius: 5px;
+  color: rgba(0, 0, 0, 0.753);
+  margin: none;
+}
+
+.searchContent > select > option {
+  color: black;
+}
+
+.searchContent > .inputMain {
+  width: 1000px;
+  height: 40px;
+  padding: 0 0 0 10px;
+  background-color: transparent;
+  outline: none;
+  border: 1px solid white;
+  border-radius: 5px;
+  color: white;
+}
+
+.searchContent > .inputNotMain {
+  width: 1000px;
+  height: 40px;
+  padding: 0 0 0 10px;
+  background-color: transparent;
+  outline: none;
+  border: 1px solid rgba(0, 0, 0, 0.623);
+  border-radius: 5px;
+  color: rgb(0, 0, 0);
+}
+
+.searchContent > input::placeholder {
+  color: rgba(255, 255, 255, 0.281);
+}
