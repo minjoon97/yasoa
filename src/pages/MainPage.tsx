@@ -13,6 +13,8 @@ interface MainPageProps {
     page: number,
     newOrNot: boolean
   ) => Promise<void>;
+  keywordState: string;
+  setKeywordState: Dispatch<SetStateAction<string>>;
 }
 
 const MainPage: React.FC<MainPageProps> = ({
@@ -21,6 +23,8 @@ const MainPage: React.FC<MainPageProps> = ({
   setcontTypeState,
   setAreaState,
   fetchDataList,
+  keywordState,
+  setKeywordState,
 }) => {
   const famousArea = ["서울", "여수", "부산", "속초", "강릉", "제주도"];
 
@@ -38,6 +42,8 @@ const MainPage: React.FC<MainPageProps> = ({
             setAreaState={setAreaState}
             fetchDataList={fetchDataList}
             contTypeState={contTypeState}
+            keywordState={keywordState}
+            setKeywordState={setKeywordState}
           ></SearchBox>
         </div>
       </section>

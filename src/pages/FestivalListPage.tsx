@@ -1,7 +1,7 @@
 import styles from "../styles/FestivalListPage.module.css";
 import ListItem from "../components/ListItem.tsx";
 import SearchContent from "../components/SearchContent.tsx";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import {
   festivalCombinedData,
   lodgmentCombinedData,
@@ -20,6 +20,9 @@ interface FestivalListPageProps {
     page: number,
     newOrNot: boolean
   ) => Promise<void>;
+  keywordState: string;
+  setKeywordState: Dispatch<SetStateAction<string>>;
+  areaState: string;
 }
 
 const FestivalListPage: React.FC<FestivalListPageProps> = ({
@@ -27,7 +30,11 @@ const FestivalListPage: React.FC<FestivalListPageProps> = ({
   contTypeState,
   fetchedData,
   fetchDataList,
+  keywordState,
+  setKeywordState,
+  areaState,
 }) => {
+  const [areaViewState, setAreaViewState] = useState("");
   //   const [page, setPage] = useState(1);
   //   let loading = false;
 
@@ -66,12 +73,20 @@ const FestivalListPage: React.FC<FestivalListPageProps> = ({
           <p>Festival</p>
         </div>
       </div>
-      <div className={styles.searchContent}>
-        <h3>검색결과는 이렇습니다.</h3>
+      <div className={styles.searchContentBox}>
+        <h3>
+          <span>{areaViewState}</span>의 <span>{keywordState}</span>에 대한
+          검색결과 입니다.
+        </h3>
         <SearchContent
+          areaState={areaState}
           setAreaState={setAreaState}
           fetchDataList={fetchDataList}
           contTypeState={contTypeState}
+          keywordState={keywordState}
+          setKeywordState={setKeywordState}
+          areaViewState={areaViewState}
+          setAreaViewState={setAreaViewState}
         ></SearchContent>
       </div>
       <div className={styles.listContent}>

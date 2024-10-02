@@ -12,6 +12,8 @@ interface SearchBoxProps {
     newOrNot: boolean
   ) => Promise<void>;
   contTypeState: number;
+  keywordState: string;
+  setKeywordState: Dispatch<SetStateAction<string>>;
 }
 
 const SearchBox: React.FC<SearchBoxProps> = ({
@@ -20,6 +22,8 @@ const SearchBox: React.FC<SearchBoxProps> = ({
   setAreaState,
   fetchDataList,
   contTypeState,
+  keywordState,
+  setKeywordState,
 }) => {
   return (
     <>
@@ -49,6 +53,8 @@ const SearchBox: React.FC<SearchBoxProps> = ({
         setAreaState={setAreaState}
         fetchDataList={fetchDataList}
         contTypeState={contTypeState}
+        keywordState={keywordState}
+        setKeywordState={setKeywordState}
       ></SearchContent>
     </>
   );

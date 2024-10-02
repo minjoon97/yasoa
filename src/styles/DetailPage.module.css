@@ -1,0 +1,82 @@
+.wrapper {
+  padding-top: 200px;
+}
+
+.topContainer {
+  width: 90%;
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+.goBack {
+  color: rgba(0, 0, 0, 0.562);
+}
+
+.goBack:hover {
+  cursor: pointer;
+  color: black;
+}
+
+.tcContents {
+  text-align: center;
+  padding-top: 1rem;
+  padding-bottom: 6rem;
+}
+
+.category {
+  padding: 5px 10px;
+  border-radius: 100px;
+  background-color: #3b2db5;
+  color: white;
+  font-size: 0.8rem;
+}
+
+.title {
+  font-size: 2.4rem;
+  font-weight: 700;
+  padding-top: 3rem;
+  padding-bottom: 1rem;
+}
+
+.address {
+  font-size: 0.9rem;
+  color: rgba(0, 0, 0, 0.692);
+}
+
+.mainContainer {
+  max-width: 1500px;
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  padding-bottom: 200px;
+}
+
+.imageBox {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.image {
+  width: 60%;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.205);
+}
+
+.detailinfo {
+  width: 50%;
+}
+
+.detailinfo > p {
+  padding: 5px 0;
+  font-size: 1rem;
+  color: rgba(0, 0, 0, 0.5);
+  line-height: 1.4rem;
+}
+
+.detailinfo > p > span {
+  font-weight: 800;
+  font-size: 0.9rem;
+  color: black;
+}
