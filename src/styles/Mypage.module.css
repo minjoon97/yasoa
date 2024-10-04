@@ -1,0 +1,70 @@
+.top {
+  width: 90%;
+  max-width: 1500px;
+  padding-top: 150px;
+  padding-bottom: 80px;
+  margin: 0 auto;
+}
+
+.topTitle {
+  font-size: 2.4rem;
+}
+
+.main {
+  width: 90%;
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+.main h2 {
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+.festListUl {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5%;
+  padding-top: 30px;
+  padding-bottom: 70px;
+}
+
+.festListUl > li {
+  padding: 1rem;
+  border: 1px solid black;
+  border-radius: 10px;
+  width: 33%;
+  margin-bottom: 5px;
+}
+
+.lodgListUl {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5%;
+  padding-top: 30px;
+  padding-bottom: 70px;
+}
+
+.lodgListUl > li {
+  padding: 1rem;
+  border: 1px solid black;
+  border-radius: 10px;
+  width: 33%;
+  margin-bottom: 5px;
+}
+
+.attrListUl {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5%;
+  padding-top: 30px;
+  padding-bottom: 70px;
+}
+
+.attrListUl > li {
+  padding: 1rem;
+  border: 1px solid black;
+  border-radius: 10px;
+  width: 33%;
+  margin-bottom: 5px;
+}

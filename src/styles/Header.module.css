@@ -4,6 +4,12 @@ header {
   position: fixed;
   top: 0;
   z-index: 9999;
+  transition: 0.2s;
+}
+
+header.noTop {
+  background-color: rgba(255, 255, 255, 0.815);
+  border-bottom: 1px solid rgb(197, 197, 197);
 }
 
 .headerContents {
@@ -28,9 +34,19 @@ header {
 .menuListItem {
   font-weight: 100;
   color: rgba(255, 255, 255, 0.842);
+  transition: 0.2s;
+}
+
+.menuListItem.noTop {
+  font-weight: 300;
+  color: rgba(0, 0, 0, 0.658);
 }
 
 .menuListItem:hover {
   color: rgb(255, 255, 255);
   cursor: pointer;
+}
+
+.menuListItem.noTop:hover {
+  color: rgb(0, 0, 0);
 }

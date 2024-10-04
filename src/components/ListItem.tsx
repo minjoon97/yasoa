@@ -16,6 +16,16 @@ function isFestivalData(
 ): item is festivalCombinedData {
   return (item as festivalCombinedData).contenttypeid === "15";
 }
+function islodgmentData(
+  item: festivalCombinedData | lodgmentCombinedData | attractionCombinedData
+): item is lodgmentCombinedData {
+  return (item as lodgmentCombinedData).contenttypeid === "32";
+}
+function isattractionData(
+  item: festivalCombinedData | lodgmentCombinedData | attractionCombinedData
+): item is attractionCombinedData {
+  return (item as attractionCombinedData).contenttypeid === "12";
+}
 
 const ListItem: React.FC<ListItemProps> = ({ item }) => {
   const [differenceInDays, setdifferenceInDays] = useState(0);
@@ -43,6 +53,16 @@ const ListItem: React.FC<ListItemProps> = ({ item }) => {
     }
   }, [item]);
 
+  const [likeState, setLikeState] = useState(false);
+
+  useEffect(() => {
+    const wholeLikeList = localStorage.getItem("wholeLikeList");
+    const wholeLikeListItem = wholeLikeList ? JSON.parse(wholeLikeList) : [];
+    if (wholeLikeListItem.includes(item.contentid)) {
+      setLikeState(true);
+    }
+  }, []);
+
   return (
     <li className={styles.wrapper}>
       <div
@@ -62,8 +82,68 @@ const ListItem: React.FC<ListItemProps> = ({ item }) => {
             <p className={styles.addr}>{item.addr1}</p>
           </div>
           <div className={styles.interface}>
-            <div className={styles.like}>
-              <img src="../../public/heart.png" alt="" />
+            <div
+              className={styles.like}
+              onClick={() => {
+                //localstorage에 찜하기/찜풀기
+                const itemKey = isFestivalData(item)
+                  ? "festivalLike"
+                  : islodgmentData(item)
+                  ? "lodgmentLike"
+                  : isattractionData(item)
+                  ? "attractionLike"
+                  : "";
+
+                if (itemKey) {
+                  const storedItems = localStorage.getItem(itemKey);
+                  const parsedItems = storedItems
+                    ? JSON.parse(storedItems)
+                    : [];
+                  const itemExists = parsedItems.some(
+                    (storedItem: { contentid: string }) =>
+                      storedItem.contentid === item.contentid
+                  );
+                  const wholeLikeList = localStorage.getItem("wholeLikeList");
+                  const wholeLikeListItem = wholeLikeList
+                    ? JSON.parse(wholeLikeList)
+                    : [];
+
+                  if (itemExists) {
+                    //각 리스트에서 데이터 삭제하기
+                    const updatedItems = parsedItems.filter(
+                      (storedItem: { contentid: string }) =>
+                        storedItem.contentid !== item.contentid
+                    );
+                    localStorage.setItem(itemKey, JSON.stringify(updatedItems));
+                    //전체리스트에서 컨텐트아이디 삭제하기
+                    const updatedwholeLikeListItem = wholeLikeListItem.filter(
+                      (contentid: string) => contentid !== item.contentid
+                    );
+                    localStorage.setItem(
+                      "wholeLikeList",
+                      JSON.stringify(updatedwholeLikeListItem)
+                    );
+                    setLikeState(false);
+                  } else {
+                    //각 리스트에 데이터 추가하기
+                    parsedItems.push(item);
+                    localStorage.setItem(itemKey, JSON.stringify(parsedItems));
+                    //전체리스트에 컨텐트아이디 추가하기
+                    wholeLikeListItem.push(item.contentid);
+                    localStorage.setItem(
+                      "wholeLikeList",
+                      JSON.stringify(wholeLikeListItem)
+                    );
+                    setLikeState(true);
+                  }
+                }
+              }}
+            >
+              {likeState ? (
+                <img src="../../public/heart_on.png" alt="" />
+              ) : (
+                <img src="../../public/heart.png" alt="" />
+              )}
             </div>
             <button className={styles.detailBtn} onClick={handleClick}>
               상세보기

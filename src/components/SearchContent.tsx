@@ -90,6 +90,7 @@ const SearchContent: React.FC<SearchContentProps> = ({
     <div className={styles.searchContent}>
       <select
         className={isMainPage ? styles.selectMain : styles.selectNotMain}
+        value={areaState}
         onChange={(e) => {
           setAreaState(e.target.value);
         }}
@@ -111,6 +112,7 @@ const SearchContent: React.FC<SearchContentProps> = ({
         onClick={async () => {
           if (inputRef.current && inputRef.current.value.trim() !== "") {
             setKeywordState(inputRef.current.value);
+            inputRef.current.value = "";
           }
         }}
       >

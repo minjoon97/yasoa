@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import styles from "./styles/App.module.css";
 import "./styles/myreset.css";
 import Header from "./components/Header.tsx";
@@ -8,6 +8,7 @@ import LodgmentListPage from "./pages/LodgmentListPage.tsx";
 import AttractionListPage from "./pages/AttractionListPage.tsx";
 import DetailPage from "./pages/DetailPage.tsx";
 import Footer from "./components/Footer.tsx";
+import Mypage from "./pages/Mypage.tsx";
 import { useState, useEffect } from "react";
 import {
   keywordSearchType,
@@ -26,6 +27,28 @@ function App() {
     festivalCombinedData[] | lodgmentCombinedData[] | attractionCombinedData[]
   >([]);
   const [keywordState, setKeywordState] = useState("");
+
+  const [isTop, setIsTop] = useState(true);
+  const location = useLocation();
+
+  const handleScroll = () => {
+    if (location.pathname === "/detail" || location.pathname === "/mypage") {
+      setIsTop(false);
+    } else {
+      if (window.scrollY === 0) {
+        setIsTop(true);
+      } else {
+        setIsTop(false);
+      }
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [location.pathname]);
 
   //commonApi가져오기
   const fetchCommonList = async (item: keywordSearchType) => {
@@ -109,6 +132,7 @@ function App() {
         setAreaState={setAreaState}
         setcontTypeState={setcontTypeState}
         setfetchedData={setfetchedData}
+        isTop={isTop}
       ></Header>
       <Routes>
         <Route
@@ -171,6 +195,7 @@ function App() {
           path="/detail"
           element={<DetailPage setAreaState={setAreaState}></DetailPage>}
         ></Route>
+        <Route path="/mypage" element={<Mypage></Mypage>}></Route>
       </Routes>
       <Footer></Footer>
     </div>

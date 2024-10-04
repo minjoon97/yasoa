@@ -80,3 +80,8 @@
   font-size: 0.9rem;
   color: black;
 }
+
+.hpLink {
+  color: rgba(0, 0, 0, 0.603);
+  text-decoration: underline;
+}

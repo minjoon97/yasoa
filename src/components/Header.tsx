@@ -16,6 +16,7 @@ interface HeaderProps {
       festivalCombinedData[] | lodgmentCombinedData[] | attractionCombinedData[]
     >
   >;
+  isTop: boolean;
 }
 
 const Header: React.FC<HeaderProps> = ({
@@ -23,9 +24,10 @@ const Header: React.FC<HeaderProps> = ({
   setAreaState,
   setcontTypeState,
   setfetchedData,
+  isTop,
 }) => {
   return (
-    <header>
+    <header className={isTop ? styles.top : styles.noTop}>
       <div className={styles.headerContents}>
         <Link to="/">
           <h1
@@ -36,14 +38,20 @@ const Header: React.FC<HeaderProps> = ({
               setfetchedData([]);
             }}
           >
-            <img src="../../public/logo_white.png" alt="logo"></img>
+            {isTop ? (
+              <img src="../../public/logo_white.png" alt="logo"></img>
+            ) : (
+              <img src="../../public/logo_point.png" alt="logo"></img>
+            )}
           </h1>
         </Link>
         <nav>
           <ul className={styles.menuList}>
             <Link to="/festival">
               <li
-                className={styles.menuListItem}
+                className={`${styles.menuListItem} ${
+                  isTop ? styles.top : styles.noTop
+                }`}
                 onClick={() => {
                   setcontTypeState(15);
                   setKeywordState("");
@@ -56,7 +64,9 @@ const Header: React.FC<HeaderProps> = ({
             </Link>
             <Link to="/lodgment">
               <li
-                className={styles.menuListItem}
+                className={`${styles.menuListItem} ${
+                  isTop ? styles.top : styles.noTop
+                }`}
                 onClick={() => {
                   setcontTypeState(32);
                   setKeywordState("");
@@ -69,7 +79,9 @@ const Header: React.FC<HeaderProps> = ({
             </Link>
             <Link to="/attraction">
               <li
-                className={styles.menuListItem}
+                className={`${styles.menuListItem} ${
+                  isTop ? styles.top : styles.noTop
+                }`}
                 onClick={() => {
                   setcontTypeState(12);
                   setKeywordState("");
@@ -80,7 +92,15 @@ const Header: React.FC<HeaderProps> = ({
                 관광지
               </li>
             </Link>
-            <li className={styles.menuListItem}>마이페이지</li>
+            <Link to="/mypage">
+              <li
+                className={`${styles.menuListItem} ${
+                  isTop ? styles.top : styles.noTop
+                }`}
+              >
+                마이페이지
+              </li>
+            </Link>
           </ul>
         </nav>
       </div>

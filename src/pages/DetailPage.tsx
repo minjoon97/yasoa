@@ -25,6 +25,10 @@ const DetailPage: React.FC<DetailPageProps> = ({ setAreaState }) => {
     setAreaState("1");
   });
 
+  //홈페이지 url 파싱
+  const hpUrl = item.commonData.homepage.split(">")[1].split("<")[0];
+  const hpLink = item.commonData.homepage.split('"')[1];
+
   return (
     <>
       <div className={styles.wrapper}>
@@ -127,7 +131,14 @@ const DetailPage: React.FC<DetailPageProps> = ({ setAreaState }) => {
             <p>
               <span>홈페이지</span>
               <br></br>
-              {item.commonData.homepage}
+              <a
+                className={styles.hpLink}
+                href={hpLink}
+                target="blank"
+                rel="noopener noreferrer"
+              >
+                {hpUrl}
+              </a>
             </p>
             <p>
               <span>상세정보</span>
